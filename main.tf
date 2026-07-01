@@ -4,6 +4,7 @@ resource "fortios_firewall_address" "servers" {
   name     = "TF-Servers"
   subnet   = var.lan_subnet
   comment  = "Managed by Terraform"
+  update_if_exist = "enable"
 }
 
 resource "fortios_firewall_vip" "web_server" {
@@ -11,6 +12,7 @@ resource "fortios_firewall_vip" "web_server" {
   name     = "TF-WebServer-VIP"
   extip    = var.fortigate_hq_host
   extintf  = var.wan_interface
+  update_if_exist = "enable"
   mappedip {
     range = "192.168.2.10"
   }
