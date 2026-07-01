@@ -31,21 +31,21 @@ module "hq_lan_to_wan_policy" {
   vdom          = var.vdom
 }
 
-# Branch Resources
-resource "fortios_firewall_address" "branch_servers" {
-  provider = fortios.branch
-  name     = "TF-Branch-Servers"
-  subnet   = "10.20.0.0/24"
-  comment  = "Managed by Terraform"
-}
+# Branch Resources - requires licensed FortiGate
+# resource "fortios_firewall_address" "branch_servers" {
+#   provider = fortios.branch
+#   name     = "TF-Branch-Servers"
+#   subnet   = "10.20.0.0/24"
+#   comment  = "Managed by Terraform"
+# }
 
-module "branch_lan_to_wan_policy" {
-  source        = "./modules/firewall-policy"
-  providers     = { fortios = fortios.branch }
-  policy_name   = "TF-Branch-LAN-to-WAN"
-  src_interface = var.lan_interface
-  dst_interface = var.wan_interface
-  src_address   = fortios_firewall_address.branch_servers.name
-  nat_enabled   = "enable"
-  vdom          = var.vdom
-}
+# module "branch_lan_to_wan_policy" {
+#   source        = "./modules/firewall-policy"
+#   providers     = { fortios = fortios.branch }
+#   policy_name   = "TF-Branch-LAN-to-WAN"
+#   src_interface = var.lan_interface
+#   dst_interface = var.wan_interface
+#   src_address   = fortios_firewall_address.branch_servers.name
+#   nat_enabled   = "enable"
+#   vdom          = var.vdom
+# }
