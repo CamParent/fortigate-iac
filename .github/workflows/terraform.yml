@@ -41,6 +41,15 @@ jobs:
       - name: Terraform Plan
         run: terraform plan
 
+      - name: Cleanup existing FortiGate resources
+        run: |
+          curl -k -s -H "Authorization: Bearer ${{ secrets.FORTIOS_TOKEN }}" \
+            https://192.168.1.112/api/v2/cmdb/firewall/policy/1 -X DELETE || true
+          curl -k -s -H "Authorization: Bearer ${{ secrets.FORTIOS_TOKEN }}" \
+            https://192.168.1.112/api/v2/cmdb/firewall/address/TF-Servers -X DELETE || true
+          curl -k -s -H "Authorization: Bearer ${{ secrets.FORTIOS_TOKEN }}" \
+            https://192.168.1.112/api/v2/cmdb/firewall/vip/TF-WebServer-VIP -X DELETE || true
+
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve
