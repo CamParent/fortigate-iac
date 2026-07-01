@@ -27,6 +27,11 @@ jobs:
           fortios_branch_token = "${{ secrets.FORTIOS_BRANCH_TOKEN }}"
           EOF
 
+      - name: Debug - Test FortiGate API
+        run: |
+          curl -k -H "Authorization: Bearer ${{ secrets.FORTIOS_TOKEN }}" \
+          https://192.168.1.112/api/v2/cmdb/system/global | head -c 100
+
       - name: Terraform Init
         run: terraform init
 
