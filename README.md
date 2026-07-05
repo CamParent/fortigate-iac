@@ -1,5 +1,7 @@
 # FortiGate Infrastructure as Code (IaC)
 
+![FortiGate IaC Pipeline](https://github.com/CamParent/fortigate-iac/actions/workflows/terraform.yml/badge.svg)
+
 Terraform-based infrastructure as code for managing FortiGate firewall configuration across HQ and Branch environments via the FortiOS REST API. Includes a fully automated GitHub Actions CI/CD pipeline using a self-hosted runner for local network access.
 
 ## Architecture
@@ -112,3 +114,4 @@ execute api-user generate-key terraform
 
 - [iac-foundation](https://github.com/CamParent/iac-foundation) — Azure hub-spoke infrastructure platform using Terraform and Bicep
 - [ansible-netgen](https://github.com/CamParent/ansible-netgen) — Ansible network automation with Cisco IOS drift detection
+- [ad-lab-iac](https://github.com/CamParent/ad-lab-iac) — Ansible-driven Active Directory hardening lab on Proxmox with automated domain controller configuration
